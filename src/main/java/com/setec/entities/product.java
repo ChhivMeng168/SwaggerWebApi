@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tbl_product")
 @Setter
@@ -25,12 +27,14 @@ public class product {
 
     private String name;
     private double price;
-    private int qty;
-    private String imageUrl;
+    private int qty; 
 
     public double getAmount() {
         return price * qty;
     }
+    
+    @JsonIgnore
+    private String imageUrl;
 
     // Build a full URL for the image (e.g., http://localhost:8080/static/image.jpg)
     public String getFullImageUrl() {
